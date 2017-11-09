@@ -1,14 +1,13 @@
 # Site settings
-title:       Pixyll
-email:       your_email@example.com
-author:      John Otander
-description: "A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff."
+title:       Marin Shalamanov
+email:       shalamanov.marin@gmail.com
+author:      Marin Shalamanov
+description: "Personal blog page."
 baseurl:     ""
-url:         "http://pixyll.com"
+url:         "http://MarinShalamanov.github.io/"
 date_format: "%b %-d, %Y"
 header_pages:
  - about.md
- - contact.html
 
 # Google services
 google_verification:
@@ -23,7 +22,7 @@ bing_verification:
 animated:             false
 show_related_posts:   false
 show_post_footers:    false
-show_social_icons:    false
+show_social_icons:    true
 ajaxify_contact_form: false
 enable_mathjax: false
 extended_fonts: false
@@ -51,7 +50,7 @@ facebook_appid:
 facebook_comments_number: 10
 
 # Social icons
-github_username:
+github_username: MarinShalamanov
 reddit_username:
 bitbucket_username:
 stackoverflow_id:
@@ -59,7 +58,7 @@ twitter_username:
 skype_username:
 steam_nickname:
 google_plus_id:
-linkedin_username:
+linkedin_username:  shalamanov
 angellist_username:
 medium_id:
 bitcoin_url:
@@ -115,7 +114,7 @@ text:
   og_locale: 'en_US'
 
 # Build settings
-markdown:     kramdown
+markdown:     redcarpet
 redcarpet:
   extensions: ['smart', 'tables', 'with_toc_data']
 permalink:    pretty
