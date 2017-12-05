@@ -2,7 +2,7 @@
 layout:     post
 title:      Нуждата от софийски състезания по информатика
 date:       2017-12-01 12:32:18
-summary:    Transform your plain text into static websites and blogs. Simple, static, and blog-aware.
+summary:    Кратък анализ на състезателната информатика в София. 
 categories: education informatics competitions
 ---
 
