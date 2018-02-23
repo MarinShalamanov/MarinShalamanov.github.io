@@ -24,7 +24,7 @@ $$P$$ is the set of all problems that can be solved in time $$O(n^c)$$ where $$c
 
 $$NP$$ is the set of all problem that can be solvedin time $$O(n^c)$$ given a certificate of polynomial length. 
 
-Problem A can be **reduced** to problem B if given a solutoin for A we can solve B.
+Problem A can be **reduced** to problem B if given a solution for A we can solve B.
 
 $$NP$$-hard is the set of all problems $$A$$ such that every problem $$B \in NP$$ can be reduced to $$A$$.
 
@@ -180,11 +180,12 @@ $$ \lim _ {n \rightarrow \infty} \frac { \beta(n) ^ {\alpha(n)} } {n^c} =
 
 $$ \Rightarrow \beta(n) ^ {\alpha(n)}  \in P  $$
 
-And finaly we have:
+Finally we have:
 
 
 $$ H(n) = \mu (i < \log \log n) \left[ \forall \vert x \vert < \log n \left( Time(P_i(x)) < i\vert x\vert^i \text{ } \& \text{ } P_i(x) = 1 \Leftrightarrow x \in A \right) \right] $$
 
 ## References 
 
-[Ladner. On The structure of Polynomial Time Reducibility](https://dl.acm.org/citation.cfm?id=321877)
+1. [Ladner. On The structure of Polynomial Time Reducibility](https://dl.acm.org/citation.cfm?id=321877)
+1. Arora. Barak. Computational Complexity: A Modern Approach. Chapter 3.3
