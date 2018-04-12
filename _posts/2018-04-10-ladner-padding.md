@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      Ladner's Theorem Proof Explained
-date:       2018-02-23
+date:       2018-04-10
 summary:    What is between P and NP-hard?
 categories: informatics logic P NP complexity 
 ---
@@ -9,6 +9,8 @@ categories: informatics logic P NP complexity
 ## Ladner's Theorem
 
 > If $$P \ne NP$$ then there is a problem which is neither in $$P$$ nor $$NP$$-hard.
+
+In the rest of the article we'll proof this theorem following Russell Impagliazzo's idea of padding. In fact, this will be an extended explanation of the proof printed in Aurora and Barak's *Computational Complexity*.
 
 ## Theoretical Setup
 
