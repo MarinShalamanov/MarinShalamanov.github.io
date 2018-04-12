@@ -62,7 +62,7 @@ So we just append some number of 1s at the end of each SAT example. This way we 
 
 $$A = \{ x \circ 1^{2^{|x|}} | x \in SAT \}$$
 
-This way if $x \in A$ and the lenfth of x is n, only $$log(n)$$ of the input is actually useful to solve the problem. We know we can solve SAT is $$ O(2^n) $$ time by bruteforce. Now let's consider to following solution to the problem A:
+This way if $$x \in A$$ and the lenfth of x is n, only $$log(n)$$ of the input is actually useful to solve the problem. We know we can solve SAT is $$ O(2^n) $$ time by bruteforce. Now let's consider to following solution to the problem A:
 
 1. Given input X, remove the padding.
 2. Run the bruteforce algorithm for SAT. 
@@ -129,7 +129,7 @@ Now we need to find function H which satisfies:
 
 2. $$A \notin P \Rightarrow \forall M \exists n_o \forall n > n_0 (H(n) > M)$$
 
-Actually $$A \in P \Leftrightarrow \exists i$$ such that the program $$P_i$$ (the program with code $$i$$) solves A for polynomial number of steps. So we need to define $$H(n)$$ in terms of $i$ and wheather the i-th program solves $A$ in polynomial time. Our first attempt will be something like this:
+Actually $$A \in P \Leftrightarrow \exists i$$ such that the program $$P_i$$ (the program with code $$i$$) solves A for polynomial number of steps. So we need to define $$H(n)$$ in terms of $$i$$ and wheather the i-th program solves $$A$$ in polynomial time. Our first attempt will be something like this:
 
 $$ H(n) = \mu (i < n) \left[ P_i \text{ halts in polynomial time and } P_i \text{ solves } A \right] $$
 
