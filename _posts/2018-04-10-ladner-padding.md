@@ -10,7 +10,7 @@ categories: informatics logic P NP complexity
 
 > If $$P \ne NP$$ then there is a problem which is neither in $$P$$ nor $$NP$$-hard.
 
-In the rest of the article we'll proof this theorem following Russell Impagliazzo's idea of padding. In fact, this will be an extended explanation of the proof printed in Aurora and Barak's *Computational Complexity*.
+In the rest of the article we'll proof this theorem following Russell Impagliazzo's idea of padding. In fact, this will be an extended explanation of the proof printed in Arora and Barak's *Computational Complexity*.
 
 ## Theoretical Setup
 
