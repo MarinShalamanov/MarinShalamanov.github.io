@@ -14,13 +14,17 @@ In the rest of the article we'll proof this theorem following Russell Impagliazz
 
 ## Theoretical Setup
 
-**Problem** is a set of numbers. 
+A **problem** is a set of natural numbers, containing the encodings of the problem instances with positive answer. For example the problem for detecting is a number is prime or not will be represented by the set of primes.
 
-Given an input $$x$$ and program $$P$$ it **outputs** the value $$P(x)$$.
+A **program** is a nutural number - the encoding of an instance of some fixed computational model, e.g. a Turing machine. The encoding is bijection between $$\mathbb{N}$$ and the set of all programs. This way each natural number is a code of a program and with $$P_i$$ we'll denote the program with code $$i$$.
+
+For input $$x$$ a program $$P$$ **outputs** the value $$P(x)$$.
 
 A program P **solves a problem** if $$\forall x (P(x)=1 \leftrightarrow x \in P)$$. 
 
-A program can be solved in time T if there is a program that solves the problem in time T.
+$$Time_i(x)$$ is the execution time (number of steps till termination) for the program $$P_i$$ with input $$x$$. If $$P_i(x)$$ does not halt  $$Time_i(x) = \infty$$.
+
+A problem can be solved in time T if there is a program that solves it in time T.
 
 $$P$$ is the set of all problems that can be solved in time $$O(n^c)$$ where $$c$$ is a constant.
 
@@ -32,7 +36,7 @@ $$NP$$-hard is the set of all problems $$A$$ such that every problem $$B \in NP$
 
 $$NP$$-complete is the set $$NP \cap NP-hard$$.
 
-The *minimization operator* is defined as:
+The **bounded minimization operator** is defined as:
 
 $$ \mu (i < n) [S(i)] = \begin{cases} 
       \text{the smaller } i < n \text{ such that } S(i) & \text{if such exists} \\
@@ -40,7 +44,7 @@ $$ \mu (i < n) [S(i)] = \begin{cases}
    \end{cases} $$
    
 
-## Proof idea
+## Idea
 
 The proof will follow this idea: 
 1. We'll take a problem which is NP-complete.
