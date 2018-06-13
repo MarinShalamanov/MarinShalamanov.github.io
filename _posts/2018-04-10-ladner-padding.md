@@ -105,15 +105,15 @@ Step 2 takes polynomial time. If step 1 also takes polynomial time we'll have a 
 
 Let's repeat that: $$H(n)$$ should be such a function that 
 
-$$ \exists n_0, c \( A \in P \Rightarrow \forall n > n_0 H(n) < c \) $$
+$$ \exists n_0, c ( A \in P \Rightarrow \forall n > n_0 H(n) < c ) $$
 
 ### A is not in NP-complete
 Now we have $$A \notin P$$. We want to show that $$A \notin NP$$-complete. Since we already have $$A \in NP$$, this is equivalent to $$A \notin NP$$-hard. That means there is no polynomial reduction from SAT to A. Suppose there is such reduction $$R$$. Now we can solve SAT this way:
 
 Given input X.
 1. If $$\vert x\vert < c$$ solve X by bruteforce ($$c$$ is some constant).
-1. $$Y \leftarrow R(X)$$ (Reduce X to input Y for the problem A) 
-1. $$X \leftarrow pad^{-1}(Y)$$ 
+1. $$Y \leftarrow R(X)$$ (reduce X to input Y for the problem A) 
+1. $$X \leftarrow pad^{-1}(Y)$$ (remove the padding)
 1. Repeat 1.
 
 To find a contradiction, the length of X should be monotonically decreasing with the iterations. The loop will repeat linear number of times and we'll end up with a polynomial solution for SAT which is a contradiction.
@@ -131,7 +131,7 @@ $$A \notin P \Rightarrow \forall M \exists n_o \forall n > n_0 (H(n) > M)$$
 
 Now we need to find function H which satisfies:
 
-1. $$\exists n_o, c \( A \in P \Rightarrow \forall n > n_0 H(n) < const \)$$
+1. $$\exists n_o, c ( A \in P \Rightarrow \forall n > n_0 H(n) < const )$$
 
 2. $$A \notin P \Rightarrow \forall M \exists n_o \forall n > n_0 (H(n) > M)$$
 
@@ -166,7 +166,7 @@ $$P_i \text{ solves } A \rightsquigarrow \forall x (P_i(x)=1 \Leftrightarrow x \
 
 Now we can restate H so it's computable:
 
-$$ H(n) = \mu (i < n) \left[ \forall x < n \left( Time(P_i(x)) < i\vert x\vert^i \text{ } \& \text{ } P_i(x) = 1 \Leftrightarrow x \in A \right) \right] $$
+$$ H(n) = \mu (i < n) \left[ \forall x, |x| < n \left( Time_i(x) < i\vert x\vert^i \text{ } \& \text{ } P_i(x) = 1 \Leftrightarrow x \in A \right) \right] $$
 
 ### Making H poly-time computable
 
@@ -193,9 +193,9 @@ $$ \Rightarrow \beta(n) ^ {\alpha(n)}  \in P  $$
 Finally we have:
 
 
-$$ H(n) = \mu (i < \log \log n) \left[ \forall \vert x \vert < \log n \left( Time(P_i(x)) < i\vert x\vert^i \text{ } \& \text{ } P_i(x) = 1 \Leftrightarrow x \in A \right) \right] $$
+$$ H(n) = \mu (i < \log \log n) \left[ \forall x, \vert x \vert < \log n \left( Time(P_i(x)) < i\vert x\vert^i \text{ } \& \text{ } P_i(x) = 1 \Leftrightarrow x \in A \right) \right] $$
 
 ## References 
 
-1. [Ladner. On The structure of Polynomial Time Reducibility](https://dl.acm.org/citation.cfm?id=321877)
-1. Arora. Barak. Computational Complexity: A Modern Approach. Chapter 3.3
+1. [Ladner. On The structure of Polynomial Time Reducibility, 1975](https://dl.acm.org/citation.cfm?id=321877)
+1. Arora. Barak. Computational Complexity: A Modern Approach. Chapter 3.3. Cambridge University Press, 2009 
