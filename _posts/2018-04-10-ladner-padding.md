@@ -73,50 +73,50 @@ Given input X.
 1. $$Y = pad^{-1} (X)$$ (We remove the padding)
 2. return $$Br(Y)$$ (run the bruteforce algorithm for SAT). 
 
-Since we have only $$O(log(n))$$ of the input left at step 2, the bruteforce algorithm will work in time $$O(2^{O(log(n))}) = O(n^c) \in P$$. This way we made A so easy it became in $$P$$. 
+Since we have only $$O(log(n))$$ of the input left at step 2, the bruteforce algorithm will work in time $$O(2^{O(log(n))}) = O(n^c) \in P$$. This way we made A so easy that it becames in $$P$$. 
 
 The goal of the rest of the proof will be to find the right amount of 1s to pad with, so A will be neither in $$P$$ nor in $$NP$$-complete. More formally we'll try to find a function H such that:
 
-$$A = \{ x \circ 1^{n^{H(n)}} | x \in SAT \& |x|=n \}$$
+$$ pad(x) = x \circ 1^{n^{H(n)}} $$
 
 ## What should H(n) be?
-Let's look at the rest of the proof and figure out what do we need from H(n) so the proof will work.
+Let's look at the rest of the proof and figure out what do we need from $$H(n)$$ so the proof will work.
 We need to show three things:
 
 1. $$A \in NP$$ ,
 1. $$A \notin P$$ , 
-1. $$A \notin NP$$-complete.
+1. $$A \notin NP$$-hard.
 
 ### A is in NP
-Intuitively that shuold be true, because SAT is in $$NP$$ and A is an easier version of SAT, so it shuold also be in NP. Here's a more format proof:
+Intuitively that should be true, because SAT is in $$NP$$ and A is an easier version of SAT, so it should also be in NP. Here's a more formal proof:
 
 By the definition of NP we have $$A \in NP \Leftrightarrow $$ given a polynomial-length certificate A can be solved in polynomial time. Let the certificate be the truth assignments of the variables in the underlying SAT instance of A. Since the variables are at most $$O(n)$$, the certificate is also $$O(n)$$. We can check in poly-time if this truth assignment satisfies the formula from the input.
   
 ### A is not in P
-Let's conduct a proof by contradiction. Suppose $$A \in P $$. 
+Let's conduct a proof by contradiction. Suppose $$A \in P $$. So there exists a program $$Pr$$ which solves A in poly-time.
 
 We can solve SAT by the following algorithm:
-Given $$x$$ - input for SAT.
-1. $$y \leftarrow x \circ 1^{n^{H(n)}}$$ where $$n$$ is the length  of $$x$$
-2. Run the polynomial algorithm for A to check if $$y \in A$$. 
 
-Step 2 takes polynomial time. If step 1 also takes polynomial time we'll have a polynomial algorithm for SAT $$\Rightarrow SAT \in P$$ which will be a contradiction. Step 1 takes time $$O(n^{H(n)})$$.  So we want $$O(n^{H(n)}) \in P \Rightarrow $$ we want $$H(n)$$ to be bounded by a constant.
+Given $$x$$ - input for SAT.
+1. $$ y = pad(x) $$ 
+2. return $$ Pr(y)$$. 
+
+Step 2 takes polynomial time. If step 1 also takes polynomial time we'll have a polynomial algorithm for SAT $$\Rightarrow SAT \in P$$ which will be a contradiction. Let $n$ be the length of $x$. Step 1 takes time $$O(n^{H(n)})$$ because $$H(n)$$ is the number of 1s we need to pad with. So we want $$O(n^{H(n)}) \in P \Rightarrow $$ we want $$H(n)$$ to be bounded by a constant. Furthermore we need $H$ to be a **poly-time computable function**.
 
 Let's repeat that: $$H(n)$$ should be such a function that 
 
-$$A \in P \Rightarrow \forall n > n_0 H(n) < const$$
+$$ \exists n_0, c \( A \in P \Rightarrow \forall n > n_0 H(n) < c \) $$
 
 ### A is not in NP-complete
-Now we have $$A \notin P$$. We want to show that $$A \notin NP$$-complete. Since we already have $$A \in NP$$, this is equivalent to $$A \notin NP$$-hard. That means there is no polynomial reduction from SAT to A. Suppose there is such. Now we can solve SAT this way:
+Now we have $$A \notin P$$. We want to show that $$A \notin NP$$-complete. Since we already have $$A \in NP$$, this is equivalent to $$A \notin NP$$-hard. That means there is no polynomial reduction from SAT to A. Suppose there is such reduction $$R$$. Now we can solve SAT this way:
 
 Given input X.
 1. If $$\vert x\vert < c$$ solve X by bruteforce ($$c$$ is some constant).
-1. Reduce X to input Y for the problem A.
-1. Set X = Y without padding 
+1. $$Y \leftarrow R(X)$$ (Reduce X to input Y for the problem A) 
+1. $$X \leftarrow pad^{-1}(Y)$$ 
 1. Repeat 1.
 
-
-If we are reducing the length of X on step 3, the loop will repeat linear number of times and we'll end up with a polynompial solution for SAT. This will be a  contradiction.
+To find a contradiction, the length of X should be monotonically decreasing with the iterations. The loop will repeat linear number of times and we'll end up with a polynomial solution for SAT which is a contradiction.
 
 Since this reduction take polynomial time it will produce a polynomial output $$ \Rightarrow \vert Y\vert < \vert X \vert ^c$$ for some constant $$c$$. If $$Y = Z \circ 111\dots1$$ and $$\vert Z\vert = n$$ we have $$\vert Y\vert = n + n^{H(n)}$$. In other word we want the following implication to be true
 
@@ -131,9 +131,13 @@ $$A \notin P \Rightarrow \forall M \exists n_o \forall n > n_0 (H(n) > M)$$
 
 Now we need to find function H which satisfies:
 
-1. $$A \in P \Rightarrow \forall n > n_0 H(n) < const$$
+1. $$\exists n_o, c \( A \in P \Rightarrow \forall n > n_0 H(n) < const \)$$
 
 2. $$A \notin P \Rightarrow \forall M \exists n_o \forall n > n_0 (H(n) > M)$$
+
+3. H is computable
+
+4. H is poly-time computable
 
 Actually $$A \in P \Leftrightarrow \exists i$$ such that the program $$P_i$$ (the program with code $$i$$) solves A for polynomial number of steps. So we need to define $$H(n)$$ in terms of $$i$$ and wheather the i-th program solves $$A$$ in polynomial time. Our first attempt will be something like this:
 
@@ -142,21 +146,19 @@ $$ H(n) = \mu (i < n) \left[ P_i \text{ halts in polynomial time and } P_i \text
 So if $$A \in P$$ then there will be such $$i$$ that $$P_i$$ solves A and $$\forall n > i (H(n) = i)$$ which will satisfy (1). 
 If $$A \notin P$$ then $$ \{ i | P_i \text{ halts in polynomial time and } P_i \text{ solves } A\} = \varnothing$$ and $$\forall n (H(n) = n)$$ which satisfies (2).
 
-We are almost done! Just need to fix some more stuff..
-
 ### Making H computable 
 
-We forgot a small details. $$H$$ needs to be poly-time computable function. Currently computing $$H$$ involves checking if a program halts in polynomial time and if it solves A. That unfortunately is even far from computable.
+$$H$$ needs to be poly-time computable function. Currently computing $$H$$ involves checking if a program halts in polynomial time and if it solves A, which is not computable.
 
 Let's first make $$H$$ computable.
 
 $$ P_i \text{ halts in polynomial time } \rightsquigarrow \forall x (P_i(x) \text{ halts in time } i\vert x \vert^i ) $$
 
-That provides a stronger constraint for $$P_i$$. It should not only halt in polynomial time but in time lestt that $$i\vert x \vert^i$$. Actually this is not a limitation because if there is a program $$P_i$$ that solves A in time $$n^c$$ there is $$j > c$$ such that the program $$P_j$$ computes the same function as $$P_i$$ and runs in the same time bounds. So $$P_j$$ will run in time $$jn^j$$.
+That provides a stronger constraint for $$P_i$$. It should not only halt in polynomial time but in time less that $$i\vert x \vert^i$$. Actually this is not a limitation because if there is a program $$P_i$$ that solves A in time $$n^c$$ there is $$j > c$$ such that the program $$P_j$$ computes the same function as $$P_i$$ and runs in the same time bounds. So $$P_j$$ will run in time $$jn^j$$.
 
 We are getting closer to computable but still the part with $$\forall x$$ is a problem. Let's bound x:
 
-$$\forall x (\dots) \rightsquigarrow  \forall x < n (\dots) $$
+$$\forall x (\dots) \rightsquigarrow  \forall x , |x| < n (\dots) $$
 
 The second part of H is:
 
