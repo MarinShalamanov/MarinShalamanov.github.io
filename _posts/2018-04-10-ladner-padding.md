@@ -58,18 +58,20 @@ We'll take the problem SAT as a typical example for NP-complete problem. Actuall
 
 ## Padding: Making the problem easier
 
-To make the problem easier we'll use a techique called "padding". We define the padded problem A as follows
+To make the problem easier we'll use a techique called "padding". Let $$ pad(x) = x \circ 11 \dots 11 $$ is a function which given an input x for SAT appends a certain number of 1s at the end. We define the new problem A as follows
 
-$$ A = \{ x \circ 11\dots11 | x \in SAT \} $$
+$$ A = \{ pad(x) | x \in SAT \} = \{ x \circ 11\dots11 | x \in SAT \} $$
 
-So we just append some number of 1s at the end of each SAT example. This way we artificially enrage the input size, which will reduce the running time the algorithms solving SAT (because the running time is defined as a function of the input). For example, suppose 
+So $$ pad $$ is a bijection between the sets $$SAT$$ and $$A$$ and with $$ pad^{-1} $$ we'll denote the inverse. 
+This way we artificially enlarge the input size, which will reduce the running time of the algorithms solving SAT (because the running time is defined as a function of the input). For example, suppose 
 
 $$A = \{ x \circ 1^{2^{|x|}} | x \in SAT \}$$
 
-This way if $$x \in A$$ and the lenfth of x is n, only $$log(n)$$ of the input is actually useful to solve the problem. We know we can solve SAT is $$ O(2^n) $$ time by bruteforce. Now let's consider to following solution to the problem A:
+This way if $$x \in A$$ and the length of x is n, only $$log(n)$$ of the input is actually useful. We know we can solve SAT in $$ O(2^n) $$ time by a bruteforce algorithm $$Br$$. Now let's consider the following solution of problem A:
 
-1. Given input X, remove the padding.
-2. Run the bruteforce algorithm for SAT. 
+Given input X.
+1. $$Y = pad^{-1} (X)$$ (We remove the padding)
+2. return $$Br(Y)$$ (run the bruteforce algorithm for SAT). 
 
 Since we have only $$O(log(n))$$ of the input left at step 2, the bruteforce algorithm will work in time $$O(2^{O(log(n))}) = O(n^c) \in P$$. This way we made A so easy it became in $$P$$. 
 
