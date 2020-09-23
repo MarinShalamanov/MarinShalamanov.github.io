@@ -2,12 +2,12 @@
 title:       Marin Shalamanov
 email:       shalamanov.marin@gmail.com
 author:      Marin Shalamanov
-description: "Personal blog page."
+description: "Personal website"
 baseurl:     ""
-url:         "http://MarinShalamanov.github.io/"
+url:         "http://marinshalamanov.com/"
 date_format: "%b %-d, %Y"
 header_pages:
- - about.md
+ - none # replace with blog.html to enable blog 
 
 # Google services
 google_verification:
